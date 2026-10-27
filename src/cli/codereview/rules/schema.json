@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": ["schemaVersion", "rules"],
+  "properties": {
+    "schemaVersion": {"type": "string"},
+    "gateThreshold": {"type": "number"},
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "type", "pattern", "weight", "severity"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^CR-[A-Z]+-\\d{3}$"},
+          "category": {"enum": ["style", "correctness", "security", "complexity"]},
+          "type": {"enum": ["regex", "ast"]},
+          "nodeType": {"type": "string"},
+          "nodePattern": {"type": "string"},
+          "pattern": {"type": "string"},
+          "weight": {"type": "number", "minimum": 0, "maximum": 1},
+          "severity": {"enum": ["INFO", "MINOR", "MAJOR", "BLOCKER"]},
+          "disabled": {"type": "boolean"},
+          "muteUntil": {"type": "string"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+schemaVersion: "1.0"
+gateThreshold: 100.0
+rules:
+  - id: CR-STYLE-001
+    category: style
+    type: regex
+    pattern: "print\\("
+    weight: 0.2
+    severity: INFO
+  - id: CR-CORR-001
+    category: correctness
+    type: ast
+    nodeType: FunctionDef
+    nodePattern: "(?i)todo|fixme"
+    weight: 0.8
+    severity: MAJOR
+  - id: CR-SEC-001
+    category: security
+    type: regex
+    pattern: "eval\\(|exec\\(|pickle\\.loads\\("
+    weight: 1.0
+    severity: BLOCKER
