@@ -1,7 +1,11 @@
-# -*- coding: utf-8 -*-
 """P2 规则执行引擎（B 模块核心）。P2.1 加载校验 / P2.2 匹配执行 / P2.3 权重 / P2.4 门禁。"""
 from __future__ import annotations
-import re, yaml, jsonschema
+
+import re
+
+import jsonschema
+import yaml
+
 
 def load_ruleset(path, schema_path=None):
     """P2.1 规则加载与校验：YAML -> JSON Schema 校验 -> 内存索引。"""

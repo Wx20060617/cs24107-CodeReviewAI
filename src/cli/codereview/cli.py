@@ -1,7 +1,10 @@
-# -*- coding: utf-8 -*-
 """CodeReviewAI CLI 入口。"""
-import argparse, json, sys
+import argparse
+import json
+import sys
+
 from . import rule_engine
+
 
 def main():
     ap = argparse.ArgumentParser(prog="codereview", description="AI 代码审查助手（B 模块：规则审查）")

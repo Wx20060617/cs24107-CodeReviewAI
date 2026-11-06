@@ -8,7 +8,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "category", "type", "pattern", "weight", "severity"],
+        "required": ["id", "category", "type", "weight", "severity"],
         "properties": {
           "id": {"type": "string", "pattern": "^CR-[A-Z]+-\\d{3}$"},
           "category": {"enum": ["style", "correctness", "security", "complexity"]},
@@ -20,7 +20,17 @@
           "severity": {"enum": ["INFO", "MINOR", "MAJOR", "BLOCKER"]},
           "disabled": {"type": "boolean"},
           "muteUntil": {"type": "string"}
-        }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"type": {"const": "regex"}}},
+            "then": {"required": ["pattern"]}
+          },
+          {
+            "if": {"properties": {"type": {"const": "ast"}}},
+            "then": {"required": ["nodeType", "nodePattern"]}
+          }
+        ]
       }
     }
   }
